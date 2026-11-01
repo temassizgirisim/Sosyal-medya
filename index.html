@@ -314,4 +314,471 @@
                     <h2 class="text-2xl md:text-3xl font-extrabold text-white">Sosyal Medya ve Reklam Bütçe Hesaplayıcı</h2>
                     <p class="text-xs md:text-sm text-slate-400 leading-relaxed">
                         Çekim, kurgu, tasarım ve Meta (Instagram/Facebook) sponsorlu reklam yönetimini kapsayan paket bütçenizi aşağıdan inceleyebilirsiniz.
-              
+                    </p>
+                    
+                    <div class="flex items-center gap-4 pt-2">
+                        <span class="text-xs text-slate-400 font-semibold">Dükkan Sayısı Seçin:</span>
+                        <div class="bg-slate-950 p-1 rounded-xl border border-slate-800 flex items-center">
+                            <button onclick="setShopCount(1)" id="btn-shop-1" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-orange-600 text-white shadow">1 Dükkan</button>
+                            <button onclick="setShopCount(2)" id="btn-shop-2" class="px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white">2 Dükkan (%20 İndirimli)</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC PRICING BOX -->
+                <div class="w-full lg:w-96 bg-slate-950 border border-slate-800 rounded-2xl p-6 space-y-4 shadow-inner">
+                    <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80">
+                        <span class="text-slate-400">İçerik Çekim & Yönetim:</span>
+                        <span id="price-management" class="font-bold text-slate-200">20.000 TL / ay</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80">
+                        <span class="text-slate-400">Reklam Yönetim Hizmeti:</span>
+                        <span id="price-ads-service" class="font-bold text-slate-200">5.000 TL / ay</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs pb-3 border-b border-slate-800/80">
+                        <span class="text-slate-400">Tahmini Meta Reklam Bütçesi:</span>
+                        <span id="price-meta-budget" class="font-bold text-amber-400">3.000 TL / dükkan</span>
+                    </div>
+                    
+                    <div class="pt-2">
+                        <div class="flex items-baseline justify-between">
+                            <span class="text-xs font-semibold text-slate-400">Toplam Hizmet Bedeli:</span>
+                            <div class="text-right">
+                                <span id="price-total" class="text-2xl font-black text-emerald-400">25.000 TL</span>
+                                <span class="text-[10px] block text-slate-500">+ KDV / Aylık</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="whatsapp-btn" href="https://wa.me/?text=Merhaba,%20sosyal%20medya%20y%C3%B6netim%20ve%20reklam%20teklifinizi%20onaylamak%20istiyorum." target="_blank" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span>Teklifi Onayla & Başlat</span>
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center text-xs text-slate-500 py-6 border-t border-slate-800/60">
+            <p>© 2026 Sosyal Medya Yönetimi & İçerik Üretim Ajansı. Tüm Hakları Saklıdır.</p>
+        </footer>
+
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detail-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transition-all transform scale-95 opacity-0" id="modal-content">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950/50">
+                <div class="flex items-center gap-3">
+                    <span id="modal-day" class="w-8 h-8 rounded-xl bg-orange-500/20 text-orange-400 border border-orange-500/30 flex items-center justify-center font-bold text-xs">1</span>
+                    <div>
+                        <span id="modal-type" class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-orange-500 text-white">REELS</span>
+                        <h4 id="modal-title" class="text-sm font-bold text-white mt-1">İçerik Başlığı</h4>
+                    </div>
+                </div>
+                <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 space-y-4 text-xs text-slate-300">
+                <div>
+                    <label class="font-semibold text-slate-400 block mb-1">🎬 Video / Çekim Kurgusu & ASMR Notu:</label>
+                    <p id="modal-shoot" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-300 leading-relaxed"></p>
+                </div>
+                <div>
+                    <label class="font-semibold text-slate-400 block mb-1">📲 Story (Hikaye) Detayı:</label>
+                    <p id="modal-story" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-emerald-400 leading-relaxed"></p>
+                </div>
+                <div>
+                    <label class="font-semibold text-slate-400 block mb-1">✍️ Örnek Metin & Hashtag Önerisi:</label>
+                    <p id="modal-caption" class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-slate-400 italic leading-relaxed"></p>
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-slate-800 bg-slate-950/50 text-right">
+                <button onclick="closeModal()" class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-xl transition">Kapat</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT DATA & INTERACTION LOGIC -->
+    <script>
+        // DATA STRUCTURE FOR 3 SHOPS
+        const DATA = {
+            kebap1: {
+                title: "Kebapçı 1 - Ocakbaşı & Aile Restoranı",
+                tag: "Geleneksel & Ziyafet Konsepti",
+                desc: "Ocakbaşı cızırtısı, zırh kıyma şovları, ziyafet masaları ve usta ustalığı odaklı içerikler. Hedef: Akşam yemeği ve aile rezervasyonlarını maksimuma çıkarmak.",
+                icon: "fa-fire",
+                themeColor: "orange",
+                weeks: [
+                    { title: "1. Hafta: Geleneksel Başlangıç & Ustaların İmzası", desc: "Zırh kıyma şovları ve dumanı tüten ocakbaşı çekimleri." },
+                    { title: "2. Hafta: Ziyafet Masaları & İştah Kabartan Detaylar", desc: "Bol meze, balon lavaş ve tatlı kapanışları." },
+                    { title: "3. Hafta: Ustalık Sırları & Kalite Şeffaflığı", desc: "Et terbiye süreçleri ve ocakbaşı ateşi." },
+                    { title: "4. Hafta: Müşteri Deneyimi & Ayın Özet Ziyafeti", desc: "Dolu dükkan atmosferi ve ayın en çok satanları." }
+                ],
+                days: [
+                    { day: 1, type: "Reels", title: "Zırh Kıyma & Ocakbaşı Cızırtısı", shoot: "Zırh çekiminden ızgaraya geçiş, cızırtı sesi yüksek ASMR video.", story: "'Haftaya nefis bir kebapla başlayalım' + Ankete yönlendirme.", caption: "Gerçek ocakbaşı lezzeti zırhta başlar! 🔥 Zırh kıyması Adana Kebap masanızda cızlıyor." },
+                    { day: 2, type: "Post", title: "İmza Kebap Porsiyon Görseli", shoot: "Masada bol meze ile ürünün kuş bakışı/profesyonel fotoğrafı.", story: "Post paylaşımı + 'Günün menüsünde ne var?'", caption: "Geleneksel lezzetlerin buluşma noktası. Siz akşam yemeğinde ne alırdınız?" },
+                    { day: 3, type: "Reels", title: "Metrelik / Special Kebap Sunumu", shoot: "Dumanı üstünde masaya geliş ve ustanın son dokunuşu (yağ/sos dökme).", story: "Reels videosunu hikayeye ekleme + Konum etiketi.", caption: "Masaya sığmayan lezzet! Metrelik special kebap için arkadaş grubunu topla." },
+                    { day: 4, type: "Post", title: "Taze Meze / Salata Tabağı", shoot: "Günlük taze hazırlanan mezelerin yakın çekim estetik karesi.", story: "Post paylaşımı + 'Kebabın yanında olmazsa olmazın hangisi?'", caption: "Masamız ikramlarla donatılıyor. Taze ezme ve haydari baş tacımız." },
+                    { day: 5, type: "Reels", title: "Fırından Yeni Çıkan Lavaş / Pide", shoot: "Taş fırında balon gibi kabaran lavaşın çıkarılış ve kırılış anı.", story: "Reels paylaşımı + Cuma gününe özel yoğunluk/ocakbaşı görüntüsü.", caption: "Fırından yeni çıktı! Balon lavaşın kokusu dükkanı sardı." },
+                    { day: 6, type: "Post", title: "Hafta Sonu Aile / Masada Ziyafet", shoot: "Zengin ocakbaşı masası, kalabalık ortam görseli.", story: "Post paylaşımı + 'Hafta sonu masanız hazır, rezervasyon linki BIO'da.'", caption: "Cumartesi neşesi kalabalık masalarda güzel. Masanız hazır!" },
+                    { day: 7, type: "Reels", title: "Tatlı Kapanışı (Künefe / Kadayıf)", shoot: "Şerbet dökülme ve peynir uzama anı (Yüksek iştah kabartıcı).", story: "Reels paylaşımı + 'Yemek üstü tatlısız olmaz' hatırlatması.", caption: "Çıtır çıtır kadayıfın üzerine dökülen şerbetin sesi! 🍯" },
+                    { day: 8, type: "Reels", title: "Ustanın Sırrı / Kebap Hazırlığı", shoot: "Şişe saplama ve terbiye etme aşamalarının hızlı ritmik kurgusu.", story: "'Ocak başı hazır!' temalı usta paylaşımı.", caption: "Her şişte yılların tecrübesi ve ustalığı var." },
+                    { day: 9, type: "Post", title: "Lahmacun / Pide Görseli", shoot: "Çıtır lahmacunun arasına yeşillik koyup sarma anı fotoğrafı.", story: "Post paylaşımı + 'Çıtır lahmacun sevenler burada mı?'", caption: "Taş fırından çıkan çıtır lahmacuna kim hayır diyebilir?" },
+                    { day: 10, type: "Reels", title: "Müşteri Masası & Dürüm Sarma", shoot: "Bol malzemeli dürümün sarılışı ve ortadan ikiye kesilmesi.", story: "Reels paylaşımı + 'Öğle yemeğinde ne yesek?' sorusu.", caption: "İçi dopdolu nefis dürüm öğle molanıza lezzet katacak." },
+                    { day: 11, type: "Post", title: "Dükkan İç Mekan / Atmosfer", shoot: "Ocakbaşı deneyimi, sıcak ve samimi mekan ortam karesi.", story: "Post paylaşımı + 'Sıcak atmosferimizde sizleri bekliyoruz.'", caption: "Ev konforunda ocakbaşı keyfi için bekliyoruz." },
+                    { day: 12, type: "Reels", title: "Terbiye & Et Dinlendirme", shoot: "Kaliteli etlerin işlenme ve marine edilme süreci (Güven kurgusu).", story: "Reels paylaşımı + 'Kalite tesadüf değildir' vurgusu.", caption: "Etlerimiz özel marinasyonla 24 saat dinlendirilir." },
+                    { day: 13, type: "Post", title: "Çöp Şiş / İskender Tabağı", shoot: "Üzerine kızgın tereyağı gezdirilen porsiyon karesi.", story: "Post paylaşımı + 'Hafta sonu ziyafeti başladı.'", caption: "Cızırdayan tereyağı kokusu buraya kadar geldi!" },
+                    { day: 14, type: "Reels", title: "Eğlenceli / Akım Videosu", shoot: "Trend bir sosyal medya sesine ustalardan uyarlama eğlenceli içerik.", story: "Reels paylaşımı + Müşteri yorumu veya soru-cevap sticker'ı.", caption: "Kebap sevgisi engel tanımaz! 😄" },
+                    { day: 15, type: "Reels", title: "Közde Biber, Domates & Garnitür", shoot: "Izgarada cızırdayan garnitürlerin yakın plan estetik çekimi.", story: "'Ateşin lezzeti' temalı hikaye.", caption: "Ateşin dokunduğu her şey lezzetlenir." },
+                    { day: 16, type: "Post", title: "Çorba / Başlangıç Karesi", shoot: "Dumanı tüten sıcak çorba / ezme tabağı fotoğrafı.", story: "Post paylaşımı + 'Yemeğe sıcak bir başlangıç.'", caption: "İçinizi ısıtacak sıcak bir çorba ile başlayın." },
+                    { day: 17, type: "Reels", title: "Dürüm / Porsiyon Paket Servis", shoot: "Paket servise hazırlık, özenle sarılış ve kutulanış kurgusu.", story: "Reels paylaşımı + 'Sipariş hattı & Paket servis' vurgusu.", caption: "Sıcak lezzetler kapınıza kadar aynı tazelikte geliyor." },
+                    { day: 18, type: "Post", title: "Izgara Kanat / Pirzola", shoot: "Cızırdayan tavuk/kuzu pirzolaların iştah açıcı görseli.", story: "Post paylaşımı + 'Farklı lezzet arayanlara...'", caption: "Lokum gibi pişmiş pirzola sevenleri görelim." },
+                    { day: 19, type: "Reels", title: "Özel Sos döküm Anı", shoot: "Kebap üzerine dökülen özel sos veya kızgın tereyağı efekti.", story: "Reels paylaşımı + Cuma akşamı yoğunluk atmosferi.", caption: "Son dokunuş: Özel tereyağlı sos dökümü! ✨" },
+                    { day: 20, type: "Post", title: "Tatlı tabağı & Çay İkramı", shoot: "Yemek sonrası demli çay ve tatlı sunum karesi.", story: "Post paylaşımı + 'Kebap üstü demli çay keyfi.'", caption: "Ziyafetin kapanışı demli bir çay ve tatlı ile yapılır." },
+                    { day: 21, type: "Reels", title: "Mekan Ziyareti / Yol Tarifi", shoot: "Dükkana nasıl gelinir? Kolay ulaşım ve otopark/lokasyon kurgusu.", story: "Reels paylaşımı + Konum bilgisi ve yol tarifi sticker'ı.", caption: "Bize ulaşmak çok kolay! Yol tarifimiz videoda." },
+                    { day: 22, type: "Reels", title: "Karışık Izgara Tepsisi", shoot: "Tüm lezzetlerin bir arada olduğu büyük ziyafet tepsisi çekimi.", story: "'Ailenizle ve dostlarınızla ziyafet zamanı.'", caption: "Kararsız kalanlara dev tepsi: Karışık Izgara!" },
+                    { day: 23, type: "Post", title: "Beyti Sarma Görseli", shoot: "Yoğurtlu, soslu Beyti'nin iştah kabartan yakın plan karesi.", story: "Post paylaşımı + 'Günün yıldızı: Beyti Sarma.'", caption: "Sarımsaklı yoğurt ve sosun muhteşem uyumu." },
+                    { day: 24, type: "Reels", title: "Masadaki Yan Ürünler & İkramlar", shoot: "Masaya gelen ikram mezelerin bolluğunu gösteren hızlı kurgu.", story: "Reels paylaşımı + 'Bizde ikramlar masayı donatır!'", caption: "Bizim masamızda ikramlar hiç bitmez." },
+                    { day: 25, type: "Post", title: "Çıtır Pide Çeşitleri", shoot: "Kuşbaşılı / Kaşarlı pidenin fırından çıkış fotoğrafı.", story: "Post paylaşımı + 'Çıtır pidenin adresi.'", caption: "Fırınımızdan çıkan sıcacık pideler hazır." },
+                    { day: 26, type: "Reels", title: "Ocakbaşı Ateş Şovu", shoot: "Izgara başında alevlerin yükseldiği ve etlerin pişme anı.", story: "Reels paylaşımı + 'Hafta sonuna ateşli bir başlangıç.'", caption: "Ateş ve etin tutkulu dansı! 🔥" },
+                    { day: 27, type: "Post", title: "Müşteri Mennuniyeti / Masa", shoot: "Dolu restoran atmosferi, mutlu müşteriler (Arka plan flulu).", story: "Post paylaşımı + 'Bizi tercih ettiğiniz için teşekkürler.'", caption: "Sizlerin tebessümü bizim en büyük ödülümüz." },
+                    { day: 28, type: "Reels", title: "Ayın En Sevilen Lezzetleri Özet", shoot: "1 ay boyunca çekilen en iyi görüntülerin ritmik özeti (Highlight).", story: "Reels paylaşımı + 'Bu ay en çok hangisini canınız çekti?'", caption: "Bu ayın en sevilen ocakbaşı anları! Haftaya hangisiyle başlıyoruz?" }
+                ]
+            },
+            kebap2: {
+                title: "Kebapçı 2 - Hızlı Paket & Dürüm Sokak Lezzetleri",
+                tag: "Hızlı Servis & Genç Kitle Konsepti",
+                desc: "Çıtır dürümler, hızlı kurye kurguları, öğle arası paket servisleri ve dinamik sokak lezzeti kurguları. Hedef: Gün içi siparişleri ve paket servisi patlatmak.",
+                icon: "fa-utensils",
+                themeColor: "red",
+                weeks: [
+                    { title: "1. Hafta: Şehrin En Hızlı Dürümcüsü", desc: "Bol soslu dürümler ve jet paket servis vurgusu." },
+                    { title: "2. Hafta: Çıtır Pide & Lahmacun Fırtınası", desc: "Taş fırından hızlı teslimatlar ve avantajlı menüler." },
+                    { title: "3. Hafta: Mutfak Şeffaflığı & Hijyen", desc: "Göz önünde hazırlanan temiz ve hızlı dürüm kurguları." },
+                    { title: "4. Hafta: Öğle Arası & Gece Acıkanlar", desc: "Ofis çalışanlarına özel indirimler ve gece dürümü." }
+                ],
+                days: [
+                    { day: 1, type: "Reels", title: "Akım / Dürümün Kesilme Anı", shoot: "Soslu dürümün ortadan ikiye kesilip içinin akma anı.", story: "'Haftaya dev bir dürümle başlıyoruz!' + Anket", caption: "İçi dopdolu soslu dürüm şov! 🌯 İlk ısırığı kime ısmarlıyorsun?" },
+                    { day: 2, type: "Post", title: "Tek Kişilik İdeal Menü", shoot: "Dürüm + Çıtır Patates + Ayran kombinasyonunun estetik karesi.", story: "Post paylaşımı + 'Öğle arası ne yesek?'", caption: "Öğle molasının en lezzetli kurtarıcısı hazır." },
+                    { day: 3, type: "Reels", title: "Hızlı Paket Servis Hazırlığı", shoot: "Paket kutusuna serim, dürümün sarılışı ve hızlı kapatılma ritmi.", story: "Reels + Sipariş hattı linki.", caption: "Sıcak sıcak kapınızda! Sipariş hattımız aktif." },
+                    { day: 4, type: "Post", title: "Közde Biber & Domates İkramı", shoot: "Tabağın kenarındaki nar gibi kızarmış garnitür karesi.", story: "Post paylaşımı + 'Biber sevmeyen var mı?'", caption: "Kebabın yanında közde biber olmazsa olmaz." },
+                    { day: 5, type: "Reels", title: "Mutfak Arkası Hijyen & Hazırlık", shoot: "Ustaların eldiven, bone ile seri şekilde dürümleri hazırlaması.", story: "Reels + 'Temiz mutfak şeffaf hizmet.'", caption: "Hijyenik ve şeffaf mutfağımızda her şey göz önünde." },
+                    { day: 6, type: "Post", title: "Fırından Çıkan Çıtır Pide", shoot: "Fırın küreğinde dumanı tüten kaşarlı pide karesi.", story: "Post paylaşımı + 'Hafta sonu çıtır pide keyfi.'", caption: "Çıtır pidenin en lezzetli adresi." },
+                    { day: 7, type: "Reels", title: "Sıcak Fırın Sütlaç Tatlısı", shoot: "Fırınlanmış sütlaca kaşık vurma ve fındık detayları.", story: "Reels + 'Tatlısız kapanış olmaz.'", caption: "Yemeğin üstüne kaşık kaşık fırın sütlaç!" },
+                    { day: 8, type: "Reels", title: "10 Saniyede Kebap Nasıl Pişer?", shoot: "Izgaradaki hızlı pişme sürecinin timelapse videosu.", story: "'Ateşin harareti yüksek!'", caption: "Saniyeler içinde pişen enfes Adana!" },
+                    { day: 9, type: "Post", title: "Çıtır Lahmacun Roll", shoot: "Lahmacunu roka ve maydanozla rulo yapma fotoğrafı.", story: "Post + 'Çıtır mı yumuşak mı?'", caption: "Yeşilliği bol çıtır lahmacun rulosu." },
+                    { day: 10, type: "Reels", title: "Sokak Lezzeti Kurgusu / Adana Dürüm", shoot: "Lavaşın yağlanması, etin çekilmesi ve sarılış sesi.", story: "Reels + Konum bilgisi.", caption: "Sokak lezzetlerinin kralı: Adana Dürüm!" },
+                    { day: 11, type: "Post", title: "Dükkan Önü & Güler Yüzlü Ekip", shoot: "Kuryelerin motor başında ve ekibin dükkan önü karesi.", story: "Post + 'Sizleri bekliyoruz.'", caption: "Siparişlerinizi yetiştirmek için hazırız!" },
+                    { day: 12, type: "Reels", title: "Öğle Arası Yoğunluğu & İskele Servis", shoot: "Hızlı hazırlanan tabaklar ve dinamik servis kurgusu.", story: "Reels + 'Zaman kaybettirmiyoruz.'", caption: "Öğle molasında vakit kaybetmeden lezzete ulaşın." },
+                    { day: 13, type: "Post", title: "Tavuk Şiş / Kanat Porsiyon", shoot: "Sumaklı soğanlı tavuk kanat karesi.", story: "Post + 'Hafta sonuna özel tavuk kanat.'", caption: "Nar gibi kızarmış tavuk kanat porsiyon." },
+                    { day: 14, type: "Reels", title: "Eğlenceli Müşteri Akımı", shoot: "Trend sese uyarlanmış eğlenceli dürüm sarma videosu.", story: "Reels + Soru sticker'ı.", caption: "Dürümümüzü tek oturuşta bitirebilir misin? 😄" },
+                    { day: 15, type: "Reels", title: "Bol Köpüklü Açık Ayran", shoot: "Bakır maşrapadan köpürte köpürte dökülen ayran çekimi.", story: "'Buz gibi açık ayran hazır!'", caption: "Dürümün en iyi arkadaşı buz gibi açık ayran!" },
+                    { day: 16, type: "Post", title: "Sıcak Çorba Başlangıcı", shoot: "Mercimek çorbasına tereyağı dökülme karesi.", story: "Post + 'İçinizi ısıtacak sıcak çorba.'", caption: "Güne sıcak ve lezzetli bir çorba molası verin." },
+                    { day: 17, type: "Reels", title: "Özel Soslu Ali Nazik", shoot: "Köz patlıcanlı yoğurt üzerine dökülen kızgın yağ.", story: "Reels + 'Bu lezzete hayır denmez.'", caption: "Köz patlıcan ve etin enfes uyumu: Ali Nazik!" },
+                    { day: 18, type: "Post", title: "Karışık Izgara Tabağı", shoot: "Çöp şiş ve Adana'nın bir arada olduğu tabak.", story: "Post + 'Kararsız kalanlara special.'", caption: "Tüm lezzetler tek bir tabakta toplandı." },
+                    { day: 19, type: "Reels", title: "Gece Acıkanlar Burda Mı?", shoot: "Gece saatlerinde pişen sıcak dürüm cızırtısı.", story: "Reels + Gece sipariş hattı.", caption: "Gece acıkanlara özel sıcak dürüm servisi aktif!" },
+                    { day: 20, type: "Post", title: "Künefe & Şerbet Görseli", shoot: "Sıcak künefenin üzerindeki fıstık detay karesi.", story: "Post + 'Cumartesi tatlısı.'", caption: "Çıtır kadayıf ve uzayan peynir keyfi." },
+                    { day: 21, type: "Reels", title: "Kurye Gözünden Paket Servis", shoot: "Fırından çıkış ve adrese hızlı teslimat kurgusu.", story: "Reels + Paket linki.", caption: "Kuryemizin gözünden jet hızında teslimat!" },
+                    { day: 22, type: "Reels", title: "Kuzu Şiş Cızırtısı", shoot: "Izgarada kızaran kuzu şişlerin estetik çekimi.", story: "'Etin en yumuşak hali.'", caption: "Lokum gibi kuzu şiş cızırtısı!" },
+                    { day: 23, type: "Post", title: "Beyti Sarma Porsiyon", shoot: "Yoğurtlu domates soslu Beyti karesi.", story: "Post + 'Günün önerisi.'", caption: "Özel soslu Beyti sarma lezzeti." },
+                    { day: 24, type: "Reels", title: "Masadaki İkram Mezeler", shoot: "Ezme ve haydarinin lavaşa sürülme anı.", story: "Reels + 'Taze ikramlar masada.'", caption: "Her siparişte taptaze ikram mezelerimiz eşlik eder." },
+                    { day: 25, type: "Post", title: "Kıymalı Kaşarlı Pide", shoot: "Kaşarı uzayan sıcak pide dilimi karesi.", story: "Post + 'Dilim dilim lezzet.'", caption: "Uzayan kaşarı ve çıtır hamuruyla kıymalı pide." },
+                    { day: 26, type: "Reels", title: "Zırh Şov & Et İnceltme", shoot: "Ustanın ritmik zırh vurma ve et hazırlama anı.", story: "Reels + 'Ustalık emek ister.'", caption: "Zırhın tahtadaki ritmi lezzeti belirliyor." },
+                    { day: 27, type: "Post", title: "Müşteri Masa Atmosferi", shoot: "Dükkan içindeki hareketli ve samimi garson servisi.", story: "Post + 'Hafta sonu neşesi.'", caption: "Sıcak ve dinamik ortamımızda sizleri bekliyoruz." },
+                    { day: 28, type: "Reels", title: "Ayın En Çok Satan Dürümleri", shoot: "1 ay boyunca en çok satılan 3 dürümün özeti.", story: "Reels + 'Seninki hangisi?'", caption: "Bu ayın şampiyon dürümleri belirlendi! 🌯" }
+                ]
+            },
+            phone: {
+                title: "Teknoloji & Servis - Telefoncu & Aksesuar",
+                tag: "Teknoloji & Güvenilir Servis Konsepti",
+                desc: "Kutu açılımları, 15 dakikada ekran/batarya değişimi, orijinal aksesuar tanıtımları ve ikinci el alım-satım takas kurguları. Hedef: Mağaza ziyaretini ve teknik servis güvenini artırmak.",
+                icon: "fa-mobile-screen-button",
+                themeColor: "sky",
+                weeks: [
+                    { title: "1. Hafta: Yeni Cihazlar & Kutu Açılımı (Unboxing)", desc: "Son model telefon lansmanları ve kılıf/aksesuar tanıtımları." },
+                    { title: "2. Hafta: Güvenlik & Teknik Servis Hizmetleri", desc: "15 dakikada ekran/batarya değişimi ve sıvı teması tamirleri." },
+                    { title: "3. Hafta: Takas, Garanti & Cihaz Fırsatları", desc: "Eski telefonunu getir, yenisini götür kampanyaları." },
+                    { title: "4. Hafta: Kullanım Tüyoları & Çevre Güvenliği", desc: "Gizli iPhone/Android özellikleri ve orijinal şarj kullanımı." }
+                ],
+                days: [
+                    { day: 1, type: "Reels", title: "Yeni Cihaz Kutu Açılımı (Unboxing)", shoot: "Son model cihazın kutu açılımı, jelatin sökme sesi ve yakın detaylar.", story: "'Sıfır stoklar yenilendi!' + Fiyat sticker'ı", caption: "Kutusundan yeni çıktı! 🔥 Jelatin sökme sesiyle rahatlayın. Stoklar mağazamızda!" },
+                    { day: 2, type: "Post", title: "Trend Kılıf & Aksesuar Standı", shoot: "Rengarenk lansman kılıfların ve MagSafe aksesuarların şık karesi.", story: "Post + 'Hangi renk senin tarzın?'", caption: "Cihazınıza şıklık katacak en yeni lansman kılıf renkleri stoklarımızda." },
+                    { day: 3, type: "Reels", title: "Hayalet Cam Darbe Testi", shoot: "Ekrana anahtar çizme ve mükemmel hayalet cam uygulanma süreci.", story: "Reels + 'Ekranını riske atma!'", caption: "Ekranınızı çizilmelere ve darbelere karşı 360° koruma altına alın." },
+                    { day: 4, type: "Post", title: "İkinci El Garantili Cihaz Fırsatı", shoot: "Temiz 2. el cihazın ön/arka temizlik karesi + Pil sağlığı etiketi.", story: "Post + 'Pil sağlığı %90+ cihazlar stokta.'", caption: "Sıfır ayarında, faturalı ve garantili 2. el cihaz fırsatlarını kaçırmayın." },
+                    { day: 5, type: "Reels", title: "Teknik Servis: 15 Dk Ekran Değişimi", shoot: "Kırık ekranlı cihazın sökülüp sıfır orjinal ekran takılma anı.", story: "Reels + 'Gözünüzün önünde tamir.'", caption: "Kırık ekranlara son! 15 dakikada gözünüzün önünde orijinal ekran değişimi." },
+                    { day: 6, type: "Post", title: "Şarj Aleti & Kablo Güvenliği", shoot: "Orijinal vs Yan sanayi şarj aleti farkları görseli.", story: "Post + 'Bataryanı riske atma!'", caption: "Sahte şarj aletleri bataryanıza zarar verir. Orijinal aksesuarlar kullanın!" },
+                    { day: 7, type: "Reels", title: "Eski Telefonunu Getir Yenisini Al", shoot: "Müşterinin eski cihazını verip sıfır modele geçiş anı kurgusu.", story: "Reels + 'Takas desteğimiz başladı!'", caption: "Eski telefonunuzu değerinde alıyor, sizi en yeni modele geçiriyoruz!" },
+                    { day: 8, type: "Reels", title: "Kamera Karşılaştırması (Model A vs B)", shoot: "İki popüler telefonun aynı açıdan fotoğraf/video çekim kıyası.", story: "'Hangi kamera daha iyi çekti?' anket.", caption: "İki dev model karşı karşıya! Sizce hangisinin gece çekimi daha başarılı?" },
+                    { day: 9, type: "Post", title: "Kablosuz Kulaklık Standı", shoot: "Premium Bluetooth kulaklıkların şık vitrin karesi.", story: "Post + 'Kesintisiz müzik keyfi.'", caption: "Yüksek ses kalitesi ve uzun pil ömrü sunan kablosuz kulaklıklar mağazamızda." },
+                    { day: 10, type: "Reels", title: "Hoparlör & Soket Temizliği (ASMR)", shoot: "Hoparlör deliğinden çıkan tozların mikro vakumla temizlenme anı.", story: "Reels + 'Sesiniz az mı gidiyor?'", caption: "Cihazınızın sesi az mı çıkıyor? Ücretsiz hoparlör bakımına bekleriz!" },
+                    { day: 11, type: "Post", title: "Akıllı Saat Kordon Çeşitleri", shoot: "Farklı kordon renkleriyle sergilenen akıllı saat karesi.", story: "Post + 'Tarzına uygun kordon seç.'", caption: "Akıllı saatinize her gün farklı bir hava katacak kordon çeşitleri." },
+                    { day: 12, type: "Reels", title: "500 TL Altı En İyi 3 Aksesuar", shoot: "Powerbank, hızlı araç şarjı ve kırılmaz cam ürün tanıtımı.", story: "Reels + 'Fırsat ürünleri!'", caption: "Bütçe dostu ve hayat kurtaran 3 aksesuar önerimiz!" },
+                    { day: 13, type: "Post", title: "Temiz İkinci El Vitrini", shoot: "Yan yana dizilmiş sorunsuz Android/iPhone cihaz karesi.", story: "Post + 'Tüm testleri yapılmış cihazlar.'", caption: "Tüm fonksiyonel testleri tamamlanmış garantili ikinci el telefonlar." },
+                    { day: 14, type: "Reels", title: "Kararsız Müşteri Tiplemesi", shoot: "Kılıf seçerken 20 model arasında kararsız kalan müşteri mizahı.", story: "Reels + 'Arkadaşını etiketle 😄'", caption: "Kılıf seçerken saatlerce kararsız kalan o arkadaşınız! Tagleyin." },
+                    { day: 15, type: "Reels", title: "Sararmayan Şeffaf Kılıf Testi", shoot: "Darbe emici köşeler ve sararmaya dayanıklı malzeme testi.", story: "'Şeffaf kılıf severler buraya.'", caption: "Sararmayan özel polikarbon şeffaf kılıflarla cihazınızın rengi kapanmasın." },
+                    { day: 16, type: "Post", title: "Araç İçi Mıknatıslı Tutucu", shoot: "Arabada pratik kullanım sunan kablosuz şarjlı tutucu karesi.", story: "Post + 'Yolculukta şarjsız kalma.'", caption: "Güvenli sürüş için sarsıntıya dayanıklı mıknatıslı araç tutucuları." },
+                    { day: 17, type: "Reels", title: "Gizli Telefon Kullanım Tüyosu", shoot: "Telefonda bilinmeyen faydalı 15 saniyelik pratik özellik.", story: "Reels + 'Bu özelliği biliyor muydunuz?'", caption: "Telefonunuzda hayatınızı kolaylaştıracak gizli bir tüyo!" },
+                    { day: 18, type: "Post", title: "Mutlu Müşteri Teslimat Anı", shoot: "Müşterinin yeni cihazını alırken mağaza içi güleryüzlü karesi.", story: "Post + 'Bizi tercih ettiğiniz için teşekkürler.'", caption: "Yeni cihazını teslim alan mutlu bir müşterimiz daha! Hayırlı olsun." },
+                    { day: 19, type: "Reels", title: "Teknik Servis: Batarya Değişimi", shoot: "Şişmiş pilin güvenle çıkarılıp %100 orijinal pil takılma kurgusu.", story: "Reels + 'Şarjınız çabuk mu bitiyor?'", caption: "Şarjınız yarım günde bitiyorsa batarya değişim zamanı gelmiştir." },
+                    { day: 20, type: "Post", title: "Gaming Aksesuarlar & Tetik", shoot: "Mobil oyuncular için fanlı tutucu ve kulaklık karesi.", story: "Post + 'PUBG keyfini katla.'", caption: "Mobil oyunlarda rakiplerinizin önüne geçirecek gaming aksesuarlar." },
+                    { day: 21, type: "Reels", title: "Mağazaya Yol Tarifi & Konum", shoot: "Metro/otobüs durağından mağazaya kolay yürüyüş kurgusu.", story: "Reels + Konum etiketi.", caption: "Mağazamıza ulaşmak çok kolay! Yol tarifimiz videoda." },
+                    { day: 22, type: "Reels", title: "Haftanın İndirimli Cihazı", shoot: "Özel F/P indirimli telefonun detaylı inceleme çekimi.", story: "'Sadece bu haftaya özel fiyat!'", caption: "Haftanın fırsat cihazı stoklarda! Fiyat bilgisi için DM." },
+                    { day: 23, type: "Post", title: "Yüksek Kapasiteli Powerbank", shoot: "İnce tasarım 10.000 mAh taşınabilir şarj cihazı karesi.", story: "Post + 'Gün boyu kesintisiz güç.'", caption: "Cebinize sığan yüksek hızlı taşınabilir şarj cihazları." },
+                    { day: 24, type: "Reels", title: "Safir Kamera Koruyucu Lens", shoot: "Kamera lensine çizilmez safir cam takılma anı.", story: "Reels + 'Kameranı riske atma.'", caption: "Fotoğraf kalitenizi bozmadan kamera lenslerinizi çizilmelere koruyun." },
+                    { day: 25, type: "Post", title: "Kişiselleştirilmiş Cihaz Kaplama", shoot: "Telefon arkasına uygulanan özel dokulu kaplama görselleri.", story: "Post + 'Cihazına yeni bir tarz kat.'", caption: "Çiziklerden koruyan ve tarz katan renkli telefon kaplamaları." },
+                    { day: 26, type: "Reels", title: "2. El Telefon Satarken Dikkat!", shoot: "İkinci el alım-satımda güven veren uzman bilgilendirme kurgusu.", story: "Reels + 'Cihazınızı değerinde alıyoruz.'", caption: "İkinci el cihaz satarken mağdur olmamak için bu 3 kurala dikkat edin!" },
+                    { day: 27, type: "Post", title: "Mağaza Genel Atmosfer & Stok", shoot: "Aksesuar duvarı önünde canlı mağaza içi karesi.", story: "Post + 'Hafta sonu bekliyoruz.'", caption: "Zengin ürün yelpazemiz ve güler yüzlü ekibimizle hizmetinizdeyiz." },
+                    { day: 28, type: "Reels", title: "Ayın En Çok Satan Aksesuarları", shoot: "1 ay boyunca en çok tercih edilen 3 popüler ürünün özeti.", story: "Reels + 'Sen bu ay hangisini aldın?'", caption: "Bu ayın en çok satan aksesuarları! Sizin favoriniz hangisi?" }
+                ]
+            }
+        };
+
+        // APP STATE
+        let currentShop = 'kebap1';
+        let currentView = 'weeks';
+        let shopCount = 1;
+
+        // INITIALIZE ON LOAD
+        window.onload = function() {
+            renderShopContent();
+            updateCalculations();
+        };
+
+        // SWITCH SHOP FUNCTION
+        function switchShop(shopKey) {
+            currentShop = shopKey;
+
+            // Update Tab styles
+            document.querySelectorAll('.shop-tab').forEach(tab => {
+                tab.classList.remove('active', 'border-orange-500/60', 'border-red-500/60', 'border-sky-500/60', 'bg-gradient-to-r', 'from-orange-950/40', 'from-red-950/40', 'from-sky-950/40', 'text-white', 'shadow-lg');
+                tab.classList.add('border-slate-800', 'bg-slate-900/60', 'text-slate-400');
+                const chevron = tab.querySelector('.fa-chevron-right');
+                if(chevron) chevron.classList.add('opacity-0');
+            });
+
+            const activeTab = document.getElementById(`tab-${shopKey}`);
+            const data = DATA[shopKey];
+            activeTab.classList.remove('border-slate-800', 'bg-slate-900/60', 'text-slate-400');
+            activeTab.classList.add('active', 'text-white', 'shadow-lg');
+            
+            if(shopKey === 'kebap1') {
+                activeTab.classList.add('border-orange-500/60', 'bg-gradient-to-r', 'from-orange-950/40', 'to-slate-900');
+            } else if(shopKey === 'kebap2') {
+                activeTab.classList.add('border-red-500/60', 'bg-gradient-to-r', 'from-red-950/40', 'to-slate-900');
+            } else {
+                activeTab.classList.add('border-sky-500/60', 'bg-gradient-to-r', 'from-sky-950/40', 'to-slate-900');
+            }
+
+            const chevron = activeTab.querySelector('.fa-chevron-right');
+            if(chevron) chevron.classList.remove('opacity-0');
+
+            renderShopContent();
+        }
+
+        // RENDER DYNAMIC SHOP CONTENT
+        function renderShopContent() {
+            const data = DATA[currentShop];
+
+            // Render Banner
+            document.getElementById('concept-title').innerText = data.title;
+            document.getElementById('concept-tag').innerText = data.tag;
+            document.getElementById('concept-desc').innerText = data.desc;
+            document.getElementById('concept-icon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+
+            // Update Banner Border/Color
+            const banner = document.getElementById('concept-banner');
+            banner.className = `p-6 rounded-3xl border transition-all duration-300 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ${
+                currentShop === 'kebap1' ? 'bg-gradient-to-r from-orange-950/30 via-slate-900 to-slate-900 border-orange-500/30' :
+                currentShop === 'kebap2' ? 'bg-gradient-to-r from-red-950/30 via-slate-900 to-slate-900 border-red-500/30' :
+                'bg-gradient-to-r from-sky-950/30 via-slate-900 to-slate-900 border-sky-500/30'
+            }`;
+
+            // Render Weeks View
+            const weeksGrid = document.getElementById('weeks-grid');
+            weeksGrid.innerHTML = '';
+            data.weeks.forEach((w, index) => {
+                const weekNum = index + 1;
+                const weekDays = data.days.filter(d => d.day >= (index*7)+1 && d.day <= (weekNum*7));
+
+                let cardHtml = `
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-5 hover:border-slate-700 transition flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">HAFTA ${weekNum}</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded-md font-semibold bg-slate-800 text-slate-300">7 Günlük Akış</span>
+                            </div>
+                            <h4 class="font-bold text-sm text-white mt-3">${w.title}</h4>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">${w.desc}</p>
+                            
+                            <!-- MINI DAYS PREVIEW -->
+                            <div class="mt-4 space-y-2">
+                `;
+
+                weekDays.forEach(d => {
+                    cardHtml += `
+                        <div onclick="openModal(${d.day})" class="p-2 rounded-xl bg-slate-950 border border-slate-800/80 hover:border-orange-500/40 cursor-pointer transition flex items-center justify-between">
+                            <div class="flex items-center gap-2 overflow-hidden">
+                                <span class="w-5 h-5 rounded-md ${d.type === 'Reels' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'bg-sky-500/20 text-sky-400 border border-sky-500/30'} flex items-center justify-center text-[10px] font-bold shrink-0">${d.day}</span>
+                                <span class="text-xs text-slate-200 truncate">${d.title}</span>
+                            </div>
+                            <span class="text-[9px] px-1.5 py-0.5 rounded ${d.type === 'Reels' ? 'bg-orange-500 text-white font-bold' : 'bg-slate-800 text-slate-400'} shrink-0">${d.type}</span>
+                        </div>
+                    `;
+                });
+
+                cardHtml += `
+                            </div>
+                        </div>
+                        <div class="pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 flex items-center justify-between">
+                            <span>4 Reels • 3 Post</span>
+                            <span class="text-emerald-400 font-semibold">7 Story</span>
+                        </div>
+                    </div>
+                `;
+                weeksGrid.innerHTML += cardHtml;
+            });
+
+            // Render Table Rows
+            renderTableRows(data.days);
+        }
+
+        // RENDER TABLE ROWS
+        function renderTableRows(daysArray) {
+            const tbody = document.getElementById('full-table-body');
+            tbody.innerHTML = '';
+
+            daysArray.forEach(d => {
+                const row = document.createElement('tr');
+                row.className = "hover:bg-slate-800/40 transition cursor-pointer border-b border-slate-800/40";
+                row.onclick = () => openModal(d.day);
+                row.innerHTML = `
+                    <td class="py-3 px-4 font-bold text-slate-400">${d.day}. Gün</td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-0.5 rounded text-[10px] font-bold ${d.type === 'Reels' ? 'bg-orange-500/20 text-orange-400 border border-orange-500/30' : 'bg-sky-500/20 text-sky-400 border border-sky-500/30'}">
+                            ${d.type}
+                        </span>
+                    </td>
+                    <td class="py-3 px-4">
+                        <div class="font-semibold text-slate-200 text-xs">${d.title}</div>
+                        <div class="text-[11px] text-slate-400 truncate max-w-md mt-0.5">${d.shoot}</div>
+                    </td>
+                    <td class="py-3 px-4 hidden md:table-cell text-xs text-emerald-400/90 truncate max-w-xs">
+                        ${d.story}
+                    </td>
+                    <td class="py-3 px-4 text-right">
+                        <button class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-[10px] font-semibold transition">
+                            Detay <i class="fa-solid fa-arrow-right text-[9px] ml-1"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // SWITCH VIEW FUNCTION
+        function switchView(viewName) {
+            currentView = viewName;
+            
+            document.querySelectorAll('.view-btn').forEach(btn => {
+                btn.classList.remove('active', 'bg-orange-600', 'text-white', 'shadow');
+                btn.classList.add('text-slate-400');
+            });
+
+            const activeBtn = document.getElementById(`view-btn-${viewName}`);
+            activeBtn.classList.add('active', 'bg-orange-600', 'text-white', 'shadow');
+            activeBtn.classList.remove('text-slate-400');
+
+            document.getElementById('view-weeks-container').classList.add('hidden');
+            document.getElementById('view-table-container').classList.add('hidden');
+            document.getElementById('view-stats-container').classList.add('hidden');
+            document.getElementById('table-filters').classList.add('hidden');
+
+            if(viewName === 'weeks') {
+                document.getElementById('view-weeks-container').classList.remove('hidden');
+            } else if(viewName === 'table') {
+                document.getElementById('view-table-container').classList.remove('hidden');
+                document.getElementById('table-filters').classList.remove('hidden');
+                document.getElementById('table-filters').classList.add('flex');
+            } else if(viewName === 'stats') {
+                document.getElementById('view-stats-container').classList.remove('hidden');
+            }
+        }
+
+        // FILTER TABLE ROWS
+        function filterTable() {
+            const query = document.getElementById('search-input').value.toLowerCase();
+            const typeVal = document.getElementById('type-filter').value;
+
+            const filtered = DATA[currentShop].days.filter(d => {
+                const matchesQuery = d.title.toLowerCase().includes(query) || d.shoot.toLowerCase().includes(query);
+                const matchesType = typeVal === 'ALL' || d.type === typeVal;
+                return matchesQuery && matchesType;
+            });
+
+            renderTableRows(filtered);
+        }
+
+        // PRICING CALCULATOR
+        function setShopCount(count) {
+            shopCount = count;
+            document.getElementById('btn-shop-1').className = count === 1 ? 'px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-orange-600 text-white shadow' : 'px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white';
+            document.getElementById('btn-shop-2').className = count === 2 ? 'px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-orange-600 text-white shadow' : 'px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-slate-400 hover:text-white';
+
+            updateCalculations();
+        }
+
+        function updateCalculations() {
+            if (shopCount === 1) {
+                document.getElementById('price-management').innerText = "15.000 TL / ay";
+                document.getElementById('price-ads-service').innerText = "5.000 TL / ay";
+                document.getElementById('price-meta-budget').innerText = "3.000 TL / dükkan";
+                document.getElementById('price-total').innerText = "20.000 TL";
+            } else {
+                document.getElementById('price-management').innerText = "24.000 TL (12k/dükkan)";
+                document.getElementById('price-ads-service').innerText = "8.000 TL (4k/dükkan)";
+                document.getElementById('price-meta-budget').innerText = "6.000 TL (3k x 2 dükkan)";
+                document.getElementById('price-total').innerText = "32.000 TL";
+            }
+        }
+
+        // MODAL LOGIC
+        function openModal(dayNumber) {
+            const dayData = DATA[currentShop].days.find(d => d.day === dayNumber);
+            if(!dayData) return;
+
+            document.getElementById('modal-day').innerText = dayData.day;
+            document.getElementById('modal-type').innerText = dayData.type;
+            document.getElementById('modal-title').innerText = dayData.title;
+            document.getElementById('modal-shoot').innerText = dayData.shoot;
+            document.getElementById('modal-story').innerText = dayData.story;
+            document.getElementById('modal-caption').innerText = dayData.caption;
+
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+    </script>
+</body>
+</html>
+```
