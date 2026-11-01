@@ -9,8 +9,8 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #0b0f17; color: #e2e8f0; }
-    .tab-btn.active { background-color: #f97316; color: white; border-color: #f97316; }
-    .view-btn.active { background-color: #3b82f6; color: white; }
+    .tab-btn.active { background-color: #f97316 !important; color: white !important; border-color: #f97316 !important; }
+    .view-btn.active { background-color: #3b82f6 !important; color: white !important; }
     .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
   </style>
 </head>
@@ -41,7 +41,7 @@
     <section class="space-y-3">
       <h2 class="text-xs font-bold uppercase tracking-wider text-slate-400">Dükkan Konseptini Seçin:</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <button onclick="changeConcept('kebap1')" id="btn-kebap1" class="tab-btn active p-4 rounded-2xl border border-slate-700 text-left transition flex items-center justify-between">
+        <button id="btn-kebap1" type="button" class="tab-btn active p-4 rounded-2xl border border-slate-700 bg-slate-900 text-left transition flex items-center justify-between cursor-pointer">
           <div>
             <div class="font-bold text-base">1. Kebapçı Dükkanı</div>
             <div class="text-xs opacity-80 font-normal">Ocakbaşı, Aile & Geleneksel</div>
@@ -49,7 +49,7 @@
           <i class="fa-solid fa-fire text-lg"></i>
         </button>
 
-        <button onclick="changeConcept('kebap2')" id="btn-kebap2" class="tab-btn p-4 rounded-2xl border border-slate-700 text-left transition flex items-center justify-between">
+        <button id="btn-kebap2" type="button" class="tab-btn p-4 rounded-2xl border border-slate-700 bg-slate-900 text-left transition flex items-center justify-between cursor-pointer">
           <div>
             <div class="font-bold text-base">2. Kebapçı Dükkanı</div>
             <div class="text-xs opacity-80 font-normal">Hızlı Dürüm, Paket & Sokak Lezzeti</div>
@@ -57,7 +57,7 @@
           <i class="fa-solid fa-motorcycle text-lg"></i>
         </button>
 
-        <button onclick="changeConcept('telefoncu')" id="btn-telefoncu" class="tab-btn p-4 rounded-2xl border border-slate-700 text-left transition flex items-center justify-between">
+        <button id="btn-telefoncu" type="button" class="tab-btn p-4 rounded-2xl border border-slate-700 bg-slate-900 text-left transition flex items-center justify-between cursor-pointer">
           <div>
             <div class="font-bold text-base">Telefon & Aksesuar</div>
             <div class="text-xs opacity-80 font-normal">İletişim, Stok & Teknik Servis</div>
@@ -71,9 +71,9 @@
     <section class="glass-card p-4 rounded-2xl border border-slate-800 space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
         <div class="flex items-center gap-2 bg-slate-900 p-1.5 rounded-xl border border-slate-800 w-full sm:w-auto">
-          <button onclick="switchView('weekly')" id="view-weekly" class="view-btn active flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition">Haftalık Görünüm</button>
-          <button onclick="switchView('calendar')" id="view-calendar" class="view-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition">28 Gün Takvimi</button>
-          <button onclick="switchView('stats')" id="view-stats" class="view-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition">İçerik Dağılımı</button>
+          <button id="view-weekly" type="button" class="view-btn active flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer">Haftalık Görünüm</button>
+          <button id="view-calendar" type="button" class="view-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer">28 Gün Takvimi</button>
+          <button id="view-stats" type="button" class="view-btn flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs font-bold transition cursor-pointer">İçerik Dağılımı</button>
         </div>
         <div class="text-xs text-slate-400 bg-slate-900/60 px-3 py-1.5 rounded-lg border border-slate-800 flex items-center gap-2">
           <i class="fa-solid fa-camera text-orange-400"></i>
@@ -89,7 +89,7 @@
             <span class="text-[10px] bg-slate-800 px-2 py-0.5 rounded text-slate-300">4 Reels • 3 Post</span>
           </div>
           <h3 id="w1-title" class="font-semibold text-sm text-white">Giriş ve Stok Tanıtımları</h3>
-          <p id="w1-desc" class="text-xs text-slate-400">Konsept açılışı, popüler ürünler ve yüksek etkileşimli cızırtı/unboxing videoları.</p>
+          <p id="w1-desc" class="text-xs text-slate-400">Konsept açılışı, popüler ürünler ve yüksek etkileşimli videolar.</p>
         </div>
 
         <div class="bg-slate-900/60 border border-slate-800 p-4 rounded-xl space-y-3">
@@ -156,8 +156,8 @@
         <div class="space-y-4">
           <label class="block text-xs font-bold text-slate-300">Yönetilecek Dükkan Sayısı:</label>
           <div class="grid grid-cols-2 gap-3">
-            <button onclick="setShopCount(1)" id="shop-1" class="p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs">1 Dükkan</button>
-            <button onclick="setShopCount(2)" id="shop-2" class="p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs">2 Dükkan (İndirimli)</button>
+            <button id="btn-shop-1" type="button" class="p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs cursor-pointer">1 Dükkan</button>
+            <button id="btn-shop-2" type="button" class="p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs cursor-pointer">2 Dükkan (İndirimli)</button>
           </div>
 
           <div class="space-y-2 pt-2">
@@ -165,7 +165,7 @@
               <span class="text-slate-400">Dükkan Başı Meta Reklam Bütçesi:</span>
               <span id="ad-budget-txt" class="font-bold text-emerald-400">3.000 TL / ay</span>
             </div>
-            <input type="range" id="ad-range" min="1000" max="10000" step="500" value="3000" oninput="updateCalc()" class="w-full accent-emerald-500">
+            <input type="range" id="ad-range" min="1000" max="10000" step="500" value="3000" class="w-full accent-emerald-500 cursor-pointer">
           </div>
         </div>
 
@@ -197,115 +197,133 @@
   </main>
 
   <script>
-    let currentConcept = 'kebap1';
-    let currentShops = 1;
+    document.addEventListener("DOMContentLoaded", function () {
+      let currentConcept = 'kebap1';
+      let currentShops = 1;
 
-    const concepts = {
-      kebap1: {
-        w1: ["1. Hafta: Ocakbaşı Başlangıcı", "Cızırtı videoları, zırh kıyma şovları ve ilk hafta hareketliliği."],
-        w2: ["2. Hafta: Et Terbiye & Ustalık", "Etlerin işlenme süreçleri ve pişirme incelikleri."],
-        w3: ["3. Hafta: Ziyafet & Masa Düzeni", "Kalabalık masalar, mezeler ve tatlı sunumları."],
-        w4: ["4. Hafta: Ayın En İyileri", "Haftanın en çok satan yemekleri ve yol tarifi."]
-      },
-      kebap2: {
-        w1: ["1. Hafta: Çıtır Dürümler", "Dürüm kesim şovları ve hızlı paket servis vurgusu."],
-        w2: ["2. Hafta: Mutfak Temizliği", "Hijyen standartları ve taze malzeme stokları."],
-        w3: ["3. Hafta: Öğle Arası Menüleri", "Ofis çalışanlarına hızlı teslimat ve çıtır lahmacun."],
-        w4: ["4. Hafta: Gece Acıkanlar", "Gece servisleri ve ayın özeti."]
-      },
-      telefoncu: {
-        w1: ["1. Hafta: Kutu Açılışları", "Yeni gelen cihazlar ve hayalet ekran testleri."],
-        w2: ["2. Hafta: Teknik Servis Şov", "Ekran/batarya değişim süreçleri (Önce/Sonra)."],
-        w3: ["3. Hafta: Aksesuar & Stok", "Kılıflar, kulaklıklar ve kablosuz şarj aletleri."],
-        w4: ["4. Hafta: Takas Fırsatları", "Eski cihazı getirme kampanyaları ve yol tarifi."]
+      const concepts = {
+        kebap1: {
+          w1: ["1. Hafta: Ocakbaşı Başlangıcı", "Cızırtı videoları, zırh kıyma şovları ve ilk hafta hareketliliği."],
+          w2: ["2. Hafta: Et Terbiye & Ustalık", "Etlerin işlenme süreçleri ve pişirme incelikleri."],
+          w3: ["3. Hafta: Ziyafet & Masa Düzeni", "Kalabalık masalar, mezeler ve tatlı sunumları."],
+          w4: ["4. Hafta: Ayın En İyileri", "Haftanın en çok satan yemekleri ve yol tarifi."]
+        },
+        kebap2: {
+          w1: ["1. Hafta: Çıtır Dürümler", "Dürüm kesim şovları ve hızlı paket servis vurgusu."],
+          w2: ["2. Hafta: Mutfak Temizliği", "Hijyen standartları ve taze malzeme stokları."],
+          w3: ["3. Hafta: Öğle Arası Menüleri", "Ofis çalışanlarına hızlı teslimat ve çıtır lahmacun."],
+          w4: ["4. Hafta: Gece Acıkanlar", "Gece servisleri ve ayın özeti."]
+        },
+        telefoncu: {
+          w1: ["1. Hafta: Kutu Açılışları", "Yeni gelen cihazlar ve hayalet ekran testleri."],
+          w2: ["2. Hafta: Teknik Servis Şov", "Ekran/batarya değişim süreçleri (Önce/Sonra)."],
+          w3: ["3. Hafta: Aksesuar & Stok", "Kılıflar, kulaklıklar ve kablosuz şarj aletleri."],
+          w4: ["4. Hafta: Takas Fırsatları", "Eski cihazı getirme kampanyaları ve yol tarifi."]
+        }
+      };
+
+      // Konsept Değiştirme
+      function changeConcept(concept) {
+        currentConcept = concept;
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('btn-' + concept).classList.add('active');
+
+        const data = concepts[concept];
+        document.getElementById('w1-title').innerText = data.w1[0];
+        document.getElementById('w1-desc').innerText = data.w1[1];
+        document.getElementById('w2-title').innerText = data.w2[0];
+        document.getElementById('w2-desc').innerText = data.w2[1];
+        document.getElementById('w3-title').innerText = data.w3[0];
+        document.getElementById('w3-desc').innerText = data.w3[1];
+        document.getElementById('w4-title').innerText = data.w4[0];
+        document.getElementById('w4-desc').innerText = data.w4[1];
+
+        renderCalendar();
       }
-    };
 
-    function changeConcept(concept) {
-      currentConcept = concept;
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('btn-' + concept).classList.add('active');
+      document.getElementById('btn-kebap1').addEventListener('click', () => changeConcept('kebap1'));
+      document.getElementById('btn-kebap2').addEventListener('click', () => changeConcept('kebap2'));
+      document.getElementById('btn-telefoncu').addEventListener('click', () => changeConcept('telefoncu'));
 
-      const data = concepts[concept];
-      document.getElementById('w1-title').innerText = data.w1[0];
-      document.getElementById('w1-desc').innerText = data.w1[1];
-      document.getElementById('w2-title').innerText = data.w2[0];
-      document.getElementById('w2-desc').innerText = data.w2[1];
-      document.getElementById('w3-title').innerText = data.w3[0];
-      document.getElementById('w3-desc').innerText = data.w3[1];
-      document.getElementById('w4-title').innerText = data.w4[0];
-      document.getElementById('w4-desc').innerText = data.w4[1];
+      // Sekme Görünümleri (Weekly, Calendar, Stats)
+      function switchView(view) {
+        document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+        document.getElementById('view-' + view).classList.add('active');
 
+        document.getElementById('sec-weekly').classList.add('hidden');
+        document.getElementById('sec-calendar').classList.add('hidden');
+        document.getElementById('sec-stats').classList.add('hidden');
+
+        document.getElementById('sec-' + view).classList.remove('hidden');
+      }
+
+      document.getElementById('view-weekly').addEventListener('click', () => switchView('weekly'));
+      document.getElementById('view-calendar').addEventListener('click', () => switchView('calendar'));
+      document.getElementById('view-stats').addEventListener('click', () => switchView('stats'));
+
+      // 28 Gün Takvimi Çizimi
+      function renderCalendar() {
+        const grid = document.getElementById('calendar-grid');
+        grid.innerHTML = '';
+
+        for (let i = 1; i <= 28; i++) {
+          let isReels = i % 2 !== 0;
+          let type = isReels ? 'Reels' : 'Post';
+          let color = isReels ? 'border-orange-500/40 text-orange-400' : 'border-blue-500/40 text-blue-400';
+
+          let card = document.createElement('div');
+          card.className = `bg-slate-900/80 border ${color} p-2.5 rounded-xl text-xs space-y-1`;
+          card.innerHTML = `
+            <div class="flex justify-between font-bold text-[10px] text-slate-400">
+              <span>Gün ${i}</span>
+              <span>${type}</span>
+            </div>
+            <div class="font-semibold text-white text-[11px] truncate">Planlı İçerik #${i}</div>
+            <div class="text-[9px] text-slate-500">+1 Story Paylaşımı</div>
+          `;
+          grid.appendChild(card);
+        }
+      }
+
+      // Hesaplayıcı Fonksiyonları
+      function updateCalc() {
+        const adBudgetPerShop = parseInt(document.getElementById('ad-range').value);
+        document.getElementById('ad-budget-txt').innerText = adBudgetPerShop.toLocaleString('tr-TR') + ' TL / ay';
+
+        let contentFee = currentShops === 1 ? 15000 : 30000;
+        let adMgmtFee = currentShops === 1 ? 5000 : 6000;
+        let totalMetaBudget = adBudgetPerShop * currentShops;
+        let grandTotal = contentFee + adMgmtFee + totalMetaBudget;
+
+        document.getElementById('lbl-content-fee').innerText = contentFee.toLocaleString('tr-TR') + ' TL';
+        document.getElementById('lbl-ad-mgmt-fee').innerText = adMgmtFee.toLocaleString('tr-TR') + ' TL';
+        document.getElementById('lbl-meta-budget').innerText = totalMetaBudget.toLocaleString('tr-TR') + ' TL';
+        document.getElementById('lbl-total-price').innerText = grandTotal.toLocaleString('tr-TR') + ' TL';
+
+        const msg = `Merhaba, ${currentShops} dükkan için aylık ${grandTotal.toLocaleString('tr-TR')} TL'lik (Reklam bütçesi dahil) paket teklifiniz hakkında görüşmek istiyorum.`;
+        document.getElementById('btn-whatsapp-offer').href = `https://wa.me/905457169891?text=${encodeURIComponent(msg)}`;
+      }
+
+      document.getElementById('btn-shop-1').addEventListener('click', function () {
+        currentShops = 1;
+        this.className = "p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs cursor-pointer";
+        document.getElementById('btn-shop-2').className = "p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs cursor-pointer";
+        updateCalc();
+      });
+
+      document.getElementById('btn-shop-2').addEventListener('click', function () {
+        currentShops = 2;
+        this.className = "p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs cursor-pointer";
+        document.getElementById('btn-shop-1').className = "p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs cursor-pointer";
+        updateCalc();
+      });
+
+      document.getElementById('ad-range').addEventListener('input', updateCalc);
+
+      // İlk Başlatma
       renderCalendar();
-    }
-
-    function switchView(view) {
-      document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
-      document.getElementById('view-' + view).classList.add('active');
-
-      document.getElementById('sec-weekly').classList.add('hidden');
-      document.getElementById('sec-calendar').classList.add('hidden');
-      document.getElementById('sec-stats').classList.add('hidden');
-
-      document.getElementById('sec-' + view).classList.remove('hidden');
-    }
-
-    function renderCalendar() {
-      const grid = document.getElementById('calendar-grid');
-      grid.innerHTML = '';
-
-      for (let i = 1; i <= 28; i++) {
-        let isReels = i % 2 !== 0;
-        let type = isReels ? 'Reels' : 'Post';
-        let color = isReels ? 'border-orange-500/40 text-orange-400' : 'border-blue-500/40 text-blue-400';
-
-        let card = document.createElement('div');
-        card.className = `bg-slate-900/80 border ${color} p-2.5 rounded-xl text-xs space-y-1`;
-        card.innerHTML = `
-          <div class="flex justify-between font-bold text-[10px] text-slate-400">
-            <span>Gün ${i}</span>
-            <span>${type}</span>
-          </div>
-          <div class="font-semibold text-white text-[11px] truncate">Planlı İçerik #${i}</div>
-          <div class="text-[9px] text-slate-500">+1 Story Paylaşımı</div>
-        `;
-        grid.appendChild(card);
-      }
-    }
-
-    function setShopCount(count) {
-      currentShops = count;
-      if (count === 1) {
-        document.getElementById('shop-1').className = "p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs";
-        document.getElementById('shop-2').className = "p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs";
-      } else {
-        document.getElementById('shop-2').className = "p-3 rounded-xl border border-orange-500 bg-orange-500/10 text-white font-bold text-xs";
-        document.getElementById('shop-1').className = "p-3 rounded-xl border border-slate-700 bg-slate-900 text-slate-400 font-bold text-xs";
-      }
       updateCalc();
-    }
-
-    function updateCalc() {
-      const adBudgetPerShop = parseInt(document.getElementById('ad-range').value);
-      document.getElementById('ad-budget-txt').innerText = adBudgetPerShop.toLocaleString('tr-TR') + ' TL / ay';
-
-      let contentFee = currentShops === 1 ? 15000 : 30000;
-      let adMgmtFee = currentShops === 1 ? 5000 : 6000;
-      let totalMetaBudget = adBudgetPerShop * currentShops;
-      let grandTotal = contentFee + adMgmtFee + totalMetaBudget;
-
-      document.getElementById('lbl-content-fee').innerText = contentFee.toLocaleString('tr-TR') + ' TL';
-      document.getElementById('lbl-ad-mgmt-fee').innerText = adMgmtFee.toLocaleString('tr-TR') + ' TL';
-      document.getElementById('lbl-meta-budget').innerText = totalMetaBudget.toLocaleString('tr-TR') + ' TL';
-      document.getElementById('lbl-total-price').innerText = grandTotal.toLocaleString('tr-TR') + ' TL';
-
-      const msg = `Merhaba, ${currentShops} dükkan için aylık ${grandTotal.toLocaleString('tr-TR')} TL'lik (Reklam bütçesi dahil) paket teklifiniz hakkında görüşmek istiyorum.`;
-      document.getElementById('btn-whatsapp-offer').href = `https://wa.me/905457169891?text=${encodeURIComponent(msg)}`;
-    }
-
-    // İlk yükleme
-    renderCalendar();
-    updateCalc();
+    });
   </script>
 </body>
 </html>
